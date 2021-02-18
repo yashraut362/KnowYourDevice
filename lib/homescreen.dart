@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'package:system_info/system_info.dart';
 import 'package:flutter/material.dart';
 import 'package:device_info/device_info.dart';
 import 'package:get/get.dart';
@@ -80,6 +80,7 @@ class _HomescreenState extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
+    const int MEGABYTE = 1024 * 1024;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -97,13 +98,67 @@ class _HomescreenState extends State<Homescreen> {
                     glassheight: Get.height * 0.17,
                     glasswidth: Get.width * 0.45,
                     glassborder: 25,
-                    glasswidget: Text('$_batteryState'),
+                    glasswidget: Center(
+                      child: Wrap(
+                        direction: Axis.vertical,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.device_hub,
+                            size: Get.width * 0.2,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Manufacturer : $manufacturer',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Brand : $brand',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Model : $model',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Codename : $device',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   GlassContainer(
                     glassheight: Get.height * 0.17,
                     glasswidth: Get.width * 0.45,
                     glassborder: 25,
-                    glasswidget: Text('$batlevl'),
+                    glasswidget: Center(
+                      child: Wrap(
+                        direction: Axis.vertical,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.android,
+                            size: Get.width * 0.2,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Android version : $release',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Android sdk version : $sdkintval',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Security Patch: $securitypatch',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -114,13 +169,55 @@ class _HomescreenState extends State<Homescreen> {
                     glassheight: Get.height * 0.17,
                     glasswidth: Get.width * 0.45,
                     glassborder: 25,
-                    glasswidget: Text('Yash'),
+                    glasswidget: Center(
+                      child: Wrap(
+                        direction: Axis.vertical,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.battery_std_rounded,
+                            size: Get.width * 0.2,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Battery level: $batlevl',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            '$_batteryState',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                   GlassContainer(
                     glassheight: Get.height * 0.17,
                     glasswidth: Get.width * 0.45,
                     glassborder: 25,
-                    glasswidget: Text('Yash'),
+                    glasswidget: Center(
+                      child: Wrap(
+                        direction: Axis.vertical,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        alignment: WrapAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.memory_outlined,
+                            size: Get.width * 0.2,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            'Kernel name: ${SysInfo.kernelName}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Kernel Arch: ${SysInfo.kernelArchitecture}',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -128,13 +225,113 @@ class _HomescreenState extends State<Homescreen> {
                 glassheight: Get.height * 0.20,
                 glasswidth: Get.width * 0.95,
                 glassborder: 25,
-                glasswidget: Text('Yash'),
+                glasswidget: Center(
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    alignment: WrapAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.storage_rounded,
+                        size: Get.width * 0.2,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.05,
+                      ),
+                      Wrap(
+                        direction: Axis.vertical,
+                        children: [
+                          Text(
+                            'Memory information',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Get.width * 0.05),
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.02,
+                          ),
+                          Text(
+                            'Total Physical Memory : ${SysInfo.getTotalPhysicalMemory() ~/ MEGABYTE} MB',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Free Physical Memory : ${SysInfo.getFreePhysicalMemory() ~/ MEGABYTE} MB',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Total Virtual Memory : ${SysInfo.getTotalVirtualMemory() ~/ MEGABYTE} MB',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Free Virtual Memory : ${SysInfo.getFreeVirtualMemory() ~/ MEGABYTE} MB',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Virtual Memory Size : ${SysInfo.getVirtualMemorySize() ~/ MEGABYTE} MB',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
               GlassContainer(
                 glassheight: Get.height * 0.20,
                 glasswidth: Get.width * 0.95,
                 glassborder: 25,
-                glasswidget: Text('Yash'),
+                glasswidget: Center(
+                  child: Wrap(
+                    direction: Axis.horizontal,
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    alignment: WrapAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.all_inclusive_rounded,
+                        size: Get.width * 0.2,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: Get.width * 0.05,
+                      ),
+                      Wrap(
+                        direction: Axis.vertical,
+                        children: [
+                          Text(
+                            'Other Information',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: Get.width * 0.05),
+                          ),
+                          SizedBox(
+                            height: Get.height * 0.02,
+                          ),
+                          Text(
+                            'Android id : $androidId',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Display: $display',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Hardware : $hardware',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Host : $host',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          Text(
+                            'Device Id : $id',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
               ),
             ],
           ),

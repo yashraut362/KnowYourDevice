@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Homescreen(),
+      home: Splashscreen(),
       getPages: [
         GetPage(name: '/home', page: () => Homescreen()),
         GetPage(name: '/splash', page: () => Splashscreen()),
