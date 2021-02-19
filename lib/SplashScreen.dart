@@ -1,38 +1,20 @@
-import 'dart:async';
-
 import 'package:KnowYourDevice/homescreen.dart';
+import 'package:custom_splash/custom_splash.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class Splashscreen extends StatefulWidget {
-  @override
-  _SplashscreenState createState() => _SplashscreenState();
-}
-
-class _SplashscreenState extends State<Splashscreen> {
-  @override
-  void initState() {
-    super.initState();
-    Timer(
-        Duration(seconds: 4),
-        () => Get.off(
-              Homescreen(),
-            ));
-  }
-
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/1.jpeg'), fit: BoxFit.cover),
-          ),
-          // child: Image(
-          //   image: AssetImage('assets/images/splash.gif'),
-          // ),
-        ),
+      body: CustomSplash(
+        imagePath: 'assets/images/splashicon.png',
+        backGroundColor: Colors.black,
+        // backGroundColor: Color(0xfffc6042),
+        animationEffect: 'zoom-in',
+        logoSize: 400,
+        home: Homescreen(),
+        duration: 2500,
+        type: CustomSplashType.StaticDuration,
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:system_info/system_info.dart';
 import 'package:flutter/material.dart';
 import 'package:device_info/device_info.dart';
-import 'package:get/get.dart';
 import 'package:battery/battery.dart';
 import 'GlassContainer.dart';
 
@@ -81,6 +80,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     const int MEGABYTE = 1024 * 1024;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
@@ -95,8 +95,8 @@ class _HomescreenState extends State<Homescreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GlassContainer(
-                    glassheight: Get.height * 0.17,
-                    glasswidth: Get.width * 0.45,
+                    glassheight: size.height * 0.17,
+                    glasswidth: size.width * 0.45,
                     glassborder: 25,
                     glasswidget: Center(
                       child: Wrap(
@@ -106,7 +106,7 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Icon(
                             Icons.device_hub,
-                            size: Get.width * 0.2,
+                            size: size.width * 0.2,
                             color: Colors.white,
                           ),
                           Text(
@@ -130,8 +130,8 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                   ),
                   GlassContainer(
-                    glassheight: Get.height * 0.17,
-                    glasswidth: Get.width * 0.45,
+                    glassheight: size.height * 0.17,
+                    glasswidth: size.width * 0.45,
                     glassborder: 25,
                     glasswidget: Center(
                       child: Wrap(
@@ -141,7 +141,7 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Icon(
                             Icons.android,
-                            size: Get.width * 0.2,
+                            size: size.width * 0.2,
                             color: Colors.white,
                           ),
                           Text(
@@ -166,8 +166,8 @@ class _HomescreenState extends State<Homescreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   GlassContainer(
-                    glassheight: Get.height * 0.17,
-                    glasswidth: Get.width * 0.45,
+                    glassheight: size.height * 0.17,
+                    glasswidth: size.width * 0.45,
                     glassborder: 25,
                     glasswidget: Center(
                       child: Wrap(
@@ -177,7 +177,7 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Icon(
                             Icons.battery_std_rounded,
-                            size: Get.width * 0.2,
+                            size: size.width * 0.2,
                             color: Colors.white,
                           ),
                           Text(
@@ -193,8 +193,8 @@ class _HomescreenState extends State<Homescreen> {
                     ),
                   ),
                   GlassContainer(
-                    glassheight: Get.height * 0.17,
-                    glasswidth: Get.width * 0.45,
+                    glassheight: size.height * 0.17,
+                    glasswidth: size.width * 0.45,
                     glassborder: 25,
                     glasswidget: Center(
                       child: Wrap(
@@ -204,7 +204,7 @@ class _HomescreenState extends State<Homescreen> {
                         children: [
                           Icon(
                             Icons.memory_outlined,
-                            size: Get.width * 0.2,
+                            size: size.width * 0.2,
                             color: Colors.white,
                           ),
                           Text(
@@ -222,8 +222,8 @@ class _HomescreenState extends State<Homescreen> {
                 ],
               ),
               GlassContainer(
-                glassheight: Get.height * 0.20,
-                glasswidth: Get.width * 0.95,
+                glassheight: size.height * 0.20,
+                glasswidth: size.width * 0.95,
                 glassborder: 25,
                 glasswidget: Center(
                   child: Wrap(
@@ -233,11 +233,11 @@ class _HomescreenState extends State<Homescreen> {
                     children: [
                       Icon(
                         Icons.storage_rounded,
-                        size: Get.width * 0.2,
+                        size: size.width * 0.2,
                         color: Colors.white,
                       ),
                       SizedBox(
-                        width: Get.width * 0.05,
+                        width: size.width * 0.05,
                       ),
                       Wrap(
                         direction: Axis.vertical,
@@ -246,10 +246,10 @@ class _HomescreenState extends State<Homescreen> {
                             'Memory information',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: Get.width * 0.05),
+                                fontSize: size.width * 0.05),
                           ),
                           SizedBox(
-                            height: Get.height * 0.02,
+                            height: size.height * 0.02,
                           ),
                           Text(
                             'Total Physical Memory : ${SysInfo.getTotalPhysicalMemory() ~/ MEGABYTE} MB',
@@ -278,8 +278,8 @@ class _HomescreenState extends State<Homescreen> {
                 ),
               ),
               GlassContainer(
-                glassheight: Get.height * 0.20,
-                glasswidth: Get.width * 0.95,
+                glassheight: size.height * 0.20,
+                glasswidth: size.width * 0.95,
                 glassborder: 25,
                 glasswidget: Center(
                   child: Wrap(
@@ -289,11 +289,11 @@ class _HomescreenState extends State<Homescreen> {
                     children: [
                       Icon(
                         Icons.all_inclusive_rounded,
-                        size: Get.width * 0.2,
+                        size: size.width * 0.2,
                         color: Colors.white,
                       ),
                       SizedBox(
-                        width: Get.width * 0.05,
+                        width: size.width * 0.05,
                       ),
                       Wrap(
                         direction: Axis.vertical,
@@ -302,10 +302,10 @@ class _HomescreenState extends State<Homescreen> {
                             'Other Information',
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: Get.width * 0.05),
+                                fontSize: size.width * 0.05),
                           ),
                           SizedBox(
-                            height: Get.height * 0.02,
+                            height: size.height * 0.02,
                           ),
                           Text(
                             'Android id : $androidId',
